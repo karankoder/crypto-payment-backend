@@ -7,3 +7,8 @@ export const frontendUrl =
   process.env.NODE_ENV === 'development'
     ? process.env.LOCAL_FRONTEND_URL
     : process.env.FRONTEND_URL;
+
+export const infuraApiKey = process.env.INFURA_API_KEY;
+
+export const rpcUrl = `https://polygon-amoy.infura.io/v3/${infuraApiKey}`;
+export const serverWalletPrivateKey = process.env.SERVER_WALLET_PRIVATE_KEY;

@@ -3,6 +3,7 @@ import './config/env.js';
 import { errorMiddleware } from './middlewares/error.js';
 import cors from 'cors';
 import { backendUrl, frontendUrl } from './config/constants.js';
+import walletRoutes from './routes/wallet.js';
 
 export const app = express();
 
@@ -15,6 +16,8 @@ app.use(
     credentials: true,
   })
 );
+
+app.use('/api/v1/wallet', walletRoutes);
 
 app.get('/', (req, res) => {
   res.send('Server is working');
