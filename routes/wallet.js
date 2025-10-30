@@ -9,6 +9,6 @@ const router = Router();
 
 router.post('/create', handleCreateWallet);
 router.get('/balance/:address', handleGetBalance);
-router.post('/transfer/simulate', handleSimulateTransfer);
+router.post('/transfer', handleSimulateTransfer);
 
 export default router;

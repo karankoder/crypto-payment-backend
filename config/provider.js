@@ -6,10 +6,10 @@ const provider = new ethers.JsonRpcProvider(rpcUrl);
 provider
   .getBlockNumber()
   .then((blockNumber) => {
-    console.log(`Connected to Polygon Mumbai. Current block: ${blockNumber}`);
+    console.log(`Connected to Polygon Amoy. Current block: ${blockNumber}`);
   })
   .catch((error) => {
-    console.error('Error connecting to Polygon Mumbai:', error.message);
+    console.error('Error connecting to Polygon Amoy:', error.message);
   });
 
 export default provider;
