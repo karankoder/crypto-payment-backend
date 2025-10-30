@@ -60,13 +60,13 @@ SERVER_WALLET_PRIVATE_KEY="0x..."
 **How to get keys:**
 
 1.  **`INFURA_API_KEY`**:
-    a. Sign up at [Infura](https://infura.io/) and create a new project.
-    b. Copy the Project ID and paste it as your `INFURA_API_KEY`.
+    - Sign up at [Infura](https://infura.io/) and create a new project.
+    - Copy the Project ID and paste it as your `INFURA_API_KEY`.
 2.  **`SERVER_WALLET_PRIVATE_KEY`**:
-    a. Run the server (see step 4) and hit the `POST /api/v1/wallet/create` endpoint to generate a new wallet.
-    b. Copy the `privateKey` from the response and paste it here.
-    c. Copy the `address` and get test MATIC from a [Polygon Faucet](https://faucet.polygon.technology/).
-    d. Use the `GET /api/v1/wallet/balance/:address` endpoint to confirm your server wallet is funded.
+    - Run the server (see step 4) and hit the `POST /api/v1/wallet/create` endpoint to generate a new wallet.
+    - Copy the `privateKey` from the response and paste it here.
+    - Copy the `address` and get test MATIC from a [Polygon Faucet](https://faucet.polygon.technology/).
+    - Use the `GET /api/v1/wallet/balance/:address` endpoint to confirm your server wallet is funded.
 
 ### 4. Run the Server
 
