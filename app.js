@@ -1,5 +1,6 @@
 import express from 'express';
 import './config/env.js';
+import rateLimit from 'express-rate-limit';
 import { errorMiddleware } from './middlewares/error.js';
 import cors from 'cors';
 import { backendUrl, frontendUrl } from './config/constants.js';
@@ -9,6 +10,16 @@ export const app = express();
 
 app.use(express.json());
 
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 50,
+  message: {
+    error: 'Too many requests from this IP, please try again after 15 minutes',
+  },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
 app.use(
   cors({
     origin: [process.env.LOCAL_FRONTEND_URL, process.env.FRONTEND_URL],
@@ -16,6 +27,8 @@ app.use(
     credentials: true,
   })
 );
+
+app.use('/api/v1', apiLimiter);
 
 app.use('/api/v1/wallet', walletRoutes);
 
