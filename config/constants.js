@@ -14,3 +14,6 @@ export const rpcUrl = `https://polygon-amoy.infura.io/v3/${infuraApiKey}`;
 export const serverWalletPrivateKey = process.env.SERVER_WALLET_PRIVATE_KEY;
 export const port = process.env.PORT || 4000;
 export const nodeEnv = process.env.NODE_ENV || 'development';
+export const etherscanApiKey = process.env.ETHERSCAN_API_KEY;
+export const etherscanApiUrl = 'https://api.etherscan.io/v2/api';
+export const geminiApiKey = process.env.GEMINI_API_KEY;

@@ -3,7 +3,6 @@ import './config/env.js';
 import rateLimit from 'express-rate-limit';
 import { errorMiddleware } from './middlewares/error.js';
 import cors from 'cors';
-import { backendUrl, frontendUrl } from './config/constants.js';
 import walletRoutes from './routes/wallet.js';
 
 export const app = express();

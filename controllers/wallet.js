@@ -1,4 +1,5 @@
 import * as blockchainService from '../services/blockchain.js';
+import * as gemini from '../services/gemini.js';
 import ErrorHandler from '../middlewares/error.js';
 import { ethers } from 'ethers';
 
@@ -82,7 +83,6 @@ export const handleSimulateTransfer = async (req, res, next) => {
       data: transferData,
     });
   } catch (error) {
-    // 4. Handle errors (e.g., server wallet not configured, insufficient funds)
     console.error('Transfer Error:', error.message);
     if (error.message.includes('insufficient funds')) {
       return next(
@@ -91,6 +91,54 @@ export const handleSimulateTransfer = async (req, res, next) => {
     }
     return next(
       new ErrorHandler(error.message || 'Error simulating transfer', 500)
+    );
+  }
+};
+
+/**
+ * Controller to handle analyzing a wallet's activity using Gemini.
+ */
+export const handleAnalyzeWallet = async (req, res, next) => {
+  try {
+    const { address } = req.params;
+
+    if (!address || !ethers.isAddress(address)) {
+      return next(new ErrorHandler('Invalid or missing wallet address', 400));
+    }
+
+    const history = await blockchainService.getWalletHistory(address);
+
+    if (history.length === 0) {
+      return res.status(200).json({
+        success: true,
+        data: {
+          analysis: 'This wallet has no transaction history.',
+        },
+      });
+    }
+
+    const simplifiedHistory = history.slice(0, 20).map((tx) => ({
+      type: tx.from === address ? 'Sent' : 'Received',
+      to: tx.to,
+      from: tx.from,
+      value_MATIC: ethers.formatEther(tx.value),
+      timestamp: tx.timeStamp
+        ? new Date(tx.timeStamp * 1000).toISOString()
+        : 'N/A',
+    }));
+
+    const analysis = await gemini.getWalletAnalysis(simplifiedHistory);
+
+    res.status(200).json({
+      success: true,
+      data: {
+        analysis: analysis,
+      },
+    });
+  } catch (error) {
+    console.error(error);
+    return next(
+      new ErrorHandler(error.message || 'Error analyzing wallet', 500)
     );
   }
 };
