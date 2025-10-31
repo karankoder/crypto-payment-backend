@@ -1,0 +1,79 @@
+{
+  "info": {
+    "_postman_id": "820ab72f-a3c6-4c70-bbd6-2322dcee2824",
+    "name": "Crypto-payment-backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "34219693"
+  },
+  "item": [
+    {
+      "name": "Create New Wallet",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{baseURL}}/api/v1/wallet/create",
+          "host": ["{{baseURL}}"],
+          "path": ["api", "v1", "wallet", "create"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Retrieve Balance",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseURL}}/api/v1/wallet/balance/0xF976C762ce54C50A2074C6c7dAC9EEBdAeA9f614",
+          "host": ["{{baseURL}}"],
+          "path": [
+            "api",
+            "v1",
+            "wallet",
+            "balance",
+            "0xF976C762ce54C50A2074C6c7dAC9EEBdAeA9f614"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Transfer Amount",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"toAddress\":\"0xF42A1C20252BeD815bB41E8a9096B2fdaAE55588\",\r\n    \"amount\":\"0.00001\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseURL}}/api/v1/transfer/simulate",
+          "host": ["{{baseURL}}"],
+          "path": ["api", "v1", "transfer", "simulate"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Analyze Wallet",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseURL",
+      "value": "https://crypto-payment-backend-cs39.onrender.com",
+      "type": "default"
+    }
+  ]
+}

@@ -102,6 +102,18 @@ The server will be running at `http://localhost:4000`.
 
 ---
 
+## Postman Collection
+
+The Postman collection is included in the repository root — import the file named `crypto-payment-backend.postman_collection.json` into Postman. The collection contains ready-to-use requests (create wallet, get balance, simulate transfer, analyze wallet).
+
+The collection uses an environment variable `baseURL`. By default the collection's `baseURL` is set to the deployed backend:
+https://crypto-payment-backend-cs39.onrender.com
+
+- To use the deployed backend directly, keep `baseURL` as above.
+- To test locally, run the server and change `baseURL` to `http://localhost:4000` before sending requests.
+
+File name in repo root: `crypto-payment-backend.postman_collection.json`.
+
 ## API Endpoints (cURL)
 
 ### 1. Create a New Wallet (Non-Custodial)
@@ -117,7 +129,7 @@ curl -X POST http://localhost:4000/api/v1/wallet/create
 ```json
 {
   "success": true,
-  "note": "Wallet created successfully. Save these credentials securely. The server does NOT store them.",
+  "message": "Wallet created successfully. Save these credentials securely. The server does NOT store them.",
   "data": {
     "address": "0x...",
     "privateKey": "0x...",
