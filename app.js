@@ -9,6 +9,8 @@ export const app = express();
 
 app.use(express.json());
 
+app.set('trust proxy', 1);
+
 const apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 50,
